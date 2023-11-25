@@ -24,6 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/info', function () {
+    phpinfo();
+});
+
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/user_show', [UserController::class, 'show']);

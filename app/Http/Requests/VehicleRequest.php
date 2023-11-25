@@ -22,8 +22,8 @@ class VehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vctr'=>'required',
-            'position'=>'required|integer',
+            'message'=>'required',
+            'topic'=>'required|integer',
             'timestamp'=>'required|data'
         ];
     }

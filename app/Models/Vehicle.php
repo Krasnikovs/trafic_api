@@ -13,4 +13,10 @@ class Vehicle extends Model
     protected $connection = 'mongodb';
 
     protected $table = 'vehicles';
+
+    protected $fillable = [
+        'message',
+        'topic',
+        'timestamp'
+    ];
 }
