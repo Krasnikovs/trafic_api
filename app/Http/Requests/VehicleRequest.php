@@ -23,7 +23,7 @@ class VehicleRequest extends FormRequest
     {
         return [
             'message'=>'required',
-            'topic'=>'required|integer',
+            'topic_id'=>'required|integer',
             'timestamp'=>'required|data'
         ];
     }

@@ -15,7 +15,7 @@ class VehicleController extends Controller
 {
     public function index()
     {
-        $vehicle = Vehicle::orderBy('id', 'ASC')->paginate(10);
+        $vehicle = Vehicle::orderBy('msg_id', 'ASC')->get();
 
         return new VehicleResource($vehicle);
     }
@@ -30,14 +30,19 @@ class VehicleController extends Controller
         $validated = $request->validate([
            'name' => 'sometimes'
         ]);
-        if (!isset($validate['vctr'])) {
+        if (!isset($validate['message'])) {
             $vehicles = Vehicle::orderBy('id', 'ASC')->paginate(100);
         } else {
-            $vehicles = Vehicle::where('vctr', 'LIKE', "%{$validated['vctr']}%")
-                ->orWhere('position', 'LIKE', "%{$validated['vctr']}")
+            $vehicles = Vehicle::where('message', 'LIKE', "%{$validated['message']}%")
+                ->orWhere('position', 'LIKE', "%{$validated['message']}")
                 ->paginate(100);
         }
 
         return VehicleResource::collection($vehicles);
+    }
+
+    public function mostScene (Vehicle $vehicle)
+    {
+
     }
 }

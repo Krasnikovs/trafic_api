@@ -30,9 +30,9 @@ Route::get('/info', function () {
 
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/user_show', [UserController::class, 'show']);
+Route::apiResource('/users', UserController::class);
 
-Route::get('/vehicle', [VehicleController::class, 'show']);
+Route::apiResource('/vehicle', VehicleController::class);
 
 Route::get('/vehicle_index', [VehicleController::class, 'index']);
 

@@ -16,7 +16,7 @@ class VehicleResource extends JsonResource
     {
         return [
             'message' => $this->message,
-            'topic' => $this->topic,
+            'topic_id' => $this->topic_id,
             'timestamp' => $this->timetable,
         ];
     }
