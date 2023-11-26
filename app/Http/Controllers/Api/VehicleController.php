@@ -41,8 +41,34 @@ class VehicleController extends Controller
         return VehicleResource::collection($vehicles);
     }
 
-    public function mostScene (Vehicle $vehicle)
+    public function mostScene ()
     {
+        $vehicle = Vehicle::select('message')
+            ->groupBy('message')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(1)
+            ->get();
 
+        return $vehicle;
+    }
+
+    public function leastScene ()
+    {
+        $vehicle = Vehicle::select('message')
+            ->groupBy('message')
+            ->orderByRaw('COUNT(*) ASC')
+            ->limit(1)
+            ->get();
+
+        return $vehicle;
+    }
+
+    public function vehicleAmount ()
+    {
+        $vehicle = Vehicle::select('message')
+            ->groupBy('message')
+            ->count();
+
+        return $vehicle;
     }
 }
