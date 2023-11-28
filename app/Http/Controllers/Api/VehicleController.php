@@ -17,7 +17,7 @@ class VehicleController extends Controller
     {
         $vehicle = Vehicle::orderBy('msg_id', 'ASC')->get();
 
-        return new VehicleResource($vehicle);
+        return $vehicle;
     }
 
     public function show(Vehicle $vehicle)
@@ -63,12 +63,24 @@ class VehicleController extends Controller
         return $vehicle;
     }
 
-    public function vehicleAmount ()
+    public function avgLifetime ()
     {
-        $vehicle = Vehicle::select('message')
-            ->groupBy('message')
+        $vehicle = '[19, 32]';
+        $lifetime = Vehicle::select('message')
+            ->where('message', $vehicle)
             ->count();
 
-        return $vehicle;
+        return $lifetime;
+    }
+
+    public function placesBeen ()
+    {
+        $vehicle = '';
+        $corner_list = [];
+        $corners = Vehicle::select('message')
+            ->where('message', $vehicle)
+            ->groupBy('topic_id');
+
+        return $corners;
     }
 }

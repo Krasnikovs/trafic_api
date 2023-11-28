@@ -22,9 +22,9 @@ class GraphRequest extends FormRequest
     public function rules()
     {
         return [
-            'vctr'=>'required',
+            'vector'=>'required',
             'position'=>'required|integer',
-            'timestamp'=>'required|data'
+            'timestamp'=>'data'
         ];
     }
 }

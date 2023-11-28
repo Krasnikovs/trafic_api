@@ -15,9 +15,9 @@ class GraphResource extends JsonResource
     public function toArray(Request $request)
     {
         return [
-          'vctr' => $this->vctr,
+            'vector' => $this->vector,
             'position' => $this->position,
-            'timestamp' => $this->timetable,
+            'timestamp' => $this->timestamp,
         ];
     }
 }

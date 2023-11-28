@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Graph extends Model
 {
     use HasFactory;
+
+    protected $connection = 'pgsql';
+    protected $table = 'vehicle';
+    protected $guard_name = 'api';
+    protected $guarded = [];
+
+    protected $fillable = [
+        'vector',
+        'position',
+        'timestamp'
+    ];
 }

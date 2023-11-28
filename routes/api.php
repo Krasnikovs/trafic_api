@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\GraphController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -34,30 +35,6 @@ Route::apiResource('/users', UserController::class);
 
 Route::apiResource('/vehicle', VehicleController::class);
 
-Route::get('/vehicle_index', [VehicleController::class, 'index']);
+Route::get('/vehicle_stat', [VehicleController::class, 'avgLifetime']);
 
-Route::get('/test_mongodb/', function (Request $request) {
-
-    $connection = DB::connection('mongodb');
-    $msg = 'Mongo is suc!';
-    try {
-        $connection->command(['ping' => 1]);
-    } catch (\Exception $e) {
-        $msg = 'Mongo down:( Error:' . $e->getMessage();
-    }
-
-    return ['msg' => $msg];
-});
-
-Route::get('/test_postgres/', function (Request $request) {
-
-    $connection = DB::collection('');
-    $msg = 'Postgres is suc!';
-    try {
-        $connection->getDatabaseName();
-    } catch (\Exception $e) {
-        $msg = 'Postgres down:( Error: ' . $e->getMessage();
-    }
-
-    return ['msg' => $msg];
-});
+Route::post('/get_vehicle', [GraphController::class, 'input']);
