@@ -35,6 +35,6 @@ Route::apiResource('/users', UserController::class);
 
 Route::apiResource('/vehicle', VehicleController::class);
 
-Route::get('/vehicle_stat', [VehicleController::class, 'avgLifetime']);
+Route::get('/vehicle_stat', [VehicleController::class, 'placesBeen']);
 
 Route::post('/get_vehicle', [GraphController::class, 'input']);

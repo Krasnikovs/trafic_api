@@ -30,11 +30,11 @@ class VehicleController extends Controller
         $validated = $request->validate([
            'name' => 'sometimes'
         ]);
-        if (!isset($validate['message'])) {
+        if (!isset($validate['vector'])) {
             $vehicles = Vehicle::orderBy('id', 'ASC')->paginate(100);
         } else {
-            $vehicles = Vehicle::where('message', 'LIKE', "%{$validated['message']}%")
-                ->orWhere('position', 'LIKE', "%{$validated['message']}")
+            $vehicles = Vehicle::where('vector', 'LIKE', "%{$validated['vector']}%")
+                ->orWhere('position', 'LIKE', "%{$validated['vector']}")
                 ->paginate(100);
         }
 
@@ -43,8 +43,8 @@ class VehicleController extends Controller
 
     public function mostScene ()
     {
-        $vehicle = Vehicle::select('message')
-            ->groupBy('message')
+        $vehicle = Vehicle::select('vector')
+            ->groupBy('vector')
             ->orderByRaw('COUNT(*) DESC')
             ->limit(1)
             ->get();
@@ -54,8 +54,8 @@ class VehicleController extends Controller
 
     public function leastScene ()
     {
-        $vehicle = Vehicle::select('message')
-            ->groupBy('message')
+        $vehicle = Vehicle::select('vector')
+            ->groupBy('vector')
             ->orderByRaw('COUNT(*) ASC')
             ->limit(1)
             ->get();
@@ -66,8 +66,8 @@ class VehicleController extends Controller
     public function avgLifetime ()
     {
         $vehicle = '[19, 32]';
-        $lifetime = Vehicle::select('message')
-            ->where('message', $vehicle)
+        $lifetime = Vehicle::select('vector')
+            ->where('vector', $vehicle)
             ->count();
 
         return $lifetime;
@@ -75,11 +75,12 @@ class VehicleController extends Controller
 
     public function placesBeen ()
     {
-        $vehicle = '';
+        $vehicle = '[73, 15]';
         $corner_list = [];
-        $corners = Vehicle::select('message')
-            ->where('message', $vehicle)
-            ->groupBy('topic_id');
+        $corners = Vehicle::select('position')
+            ->where('vector', $vehicle)
+            ->groupBy('position')
+            ->get();
 
         return $corners;
     }

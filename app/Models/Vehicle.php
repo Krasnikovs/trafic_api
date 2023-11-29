@@ -11,13 +11,19 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $connection = 'pgsql';
-    protected $table = 'received_messages';
+    protected $table = 'vehicle';
     protected $guard_name = 'api';
     protected $guarded = [];
 
+//    protected $fillable = [
+//        'message',
+//        'topic_id',
+//        'timestamp'
+//    ];
+
     protected $fillable = [
-        'message',
-        'topic_id',
+        'vector',
+        'position',
         'timestamp'
     ];
 }

@@ -14,10 +14,15 @@ class VehicleResource extends JsonResource
      */
     public function toArray(Request $request)
     {
+//        return [
+//            'message' => $this->message,
+//            'topic_id' => $this->topic_id,
+//            'timestamp' => $this->timetable,
+//        ];
         return [
-            'message' => $this->message,
-            'topic_id' => $this->topic_id,
-            'timestamp' => $this->timetable,
+            'vector' => $this->vector,
+            'position' => $this->position,
+            'timestamp' => $this->timestamp,
         ];
     }
 }
