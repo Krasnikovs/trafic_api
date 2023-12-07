@@ -21,17 +21,14 @@ use App\Models\Graph;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('/info', function () {
-    phpinfo();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/users', UserController::class);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::apiResource('/users', UserController::class);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::apiResource('/vehicle', VehicleController::class);
 
