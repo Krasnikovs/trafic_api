@@ -63,24 +63,50 @@ class VehicleController extends Controller
         return $vehicle;
     }
 
-    public function avgLifetime ()
+    public function avgLifetime (Request $request)
     {
-        $vehicle = '[19, 32]';
-        $lifetime = Vehicle::select('vector')
-            ->where('vector', $vehicle)
-            ->count();
+        $validated = $request->validate([
+            'name' => 'sometimes'
+         ]);
+
+        if (!isset($validate['vector'])) {
+            $lifetime = 'Choose vehicle';
+        } else {
+            $vehicle = Vehicle::where('vector', 'LIKE', "%{$validated['vector']}%")
+                ->orWhere('position', 'LIKE', "%{$validated['vector']}")
+                ->paginate(100);
+            
+            $lifetime = Vehicle::select('vector')
+                ->where('vector', $vehicle)
+                ->count();
+        }
+
+        
 
         return $lifetime;
     }
 
-    public function placesBeen ()
+    public function placesBeen (Request $request)
     {
-        $vehicle = '[73, 15]';
+        $validated = $request->validate([
+            'name' => 'sometimes'
+         ]);
+
+        if (!isset($validate['vector'])) {
+            $corners = 'Choose vehicle';
+        } else {
+            $vehicle = Vehicle::where('vector', 'LIKE', "%{$validated['vector']}%")
+                ->orWhere('position', 'LIKE', "%{$validated['vector']}")
+                ->paginate(100);
+
+            $corners = Vehicle::select('position')
+                ->where('vector', $vehicle)
+                ->groupBy('position')
+                ->get();
+        }
+
         $corner_list = [];
-        $corners = Vehicle::select('position')
-            ->where('vector', $vehicle)
-            ->groupBy('position')
-            ->get();
+
 
         return $corners;
     }

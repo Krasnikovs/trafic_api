@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VehicleController;
 use App\Models\User;
 use App\Models\Graph;
+use App\Models\Vehicle;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,12 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/vehicle/filter', [VehicleController::class, 'vehicleFilter']);
+
+
+
 Route::apiResource('/vehicle', VehicleController::class);
 
 Route::get('/vehicle_stat', [VehicleController::class, 'placesBeen']);
 
-Route::post('/get_vehicle', [GraphController::class, 'input']);
+Route::post('/set_vehicle', [GraphController::class, 'input']);
