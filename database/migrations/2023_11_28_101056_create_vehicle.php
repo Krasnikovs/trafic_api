@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('vector');
             $table->string('position');
+            $table->string('timestamp');
             $table->timestamps();
         });
     }

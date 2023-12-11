@@ -22,9 +22,9 @@ class VehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'message'=>'required',
-            'topic_id'=>'required|integer',
-            'timestamp'=>'required|data'
+            'vector'=>'required',
+            'position'=>'required|integer',
+            'timestamp'=>'string'
         ];
     }
 }

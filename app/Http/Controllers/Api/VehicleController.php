@@ -15,13 +15,19 @@ class VehicleController extends Controller
 {
     public function index()
     {
-        $vehicle = Vehicle::orderBy('msg_id', 'ASC')->get();
+        $vehicle = Vehicle::orderBy('id', 'ASC')->get();
 
         return $vehicle;
     }
 
     public function show(Vehicle $vehicle)
     {
+        return new VehicleResource($vehicle);
+    }
+
+    public function input(VehicleRequest $request)
+    {
+        $vehicle = Vehicle::create($request->validated());
         return new VehicleResource($vehicle);
     }
 
@@ -109,5 +115,18 @@ class VehicleController extends Controller
 
 
         return $corners;
+    }
+
+    public function timeframes ()
+    {
+        $vehicle = Vehicle::select('timestamp')
+            ->get();
+            
+        $count = $vehicle->countBy(function ($time) {
+            return $time['timestamp'];
+        });
+
+        return [$vehicle, $count];
+        
     }
 }

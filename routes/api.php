@@ -37,6 +37,6 @@ Route::post('/vehicle/filter', [VehicleController::class, 'vehicleFilter']);
 
 Route::apiResource('/vehicle', VehicleController::class);
 
-Route::get('/vehicle_stat', [VehicleController::class, 'placesBeen']);
+Route::get('/vehicle_stat', [VehicleController::class, 'timeframes']);
 
-Route::post('/set_vehicle', [GraphController::class, 'input']);
+Route::post('/vehicle/set_vehicle', [VehicleController::class, 'input']);
