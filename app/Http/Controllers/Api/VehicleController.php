@@ -119,14 +119,14 @@ class VehicleController extends Controller
 
     public function timeframes ()
     {
-        $vehicle = Vehicle::select('timestamp')
-            ->get();
-            
-        $count = $vehicle->countBy(function ($time) {
-            return $time['timestamp'];
+        $vehicles = Vehicle::get()->countBy(function ($vehicle) {
+            return $vehicle->timestamp;
         });
+        $vehicles = $vehicles->toArray();
+        $dates = array_keys($vehicles);
 
-        return [$vehicle, $count];
-        
+        $counts = array_values($vehicles);
+
+        return [$dates, $counts];
     }
 }
