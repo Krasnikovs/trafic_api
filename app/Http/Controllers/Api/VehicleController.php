@@ -40,7 +40,6 @@ class VehicleController extends Controller
             $vehicles = Vehicle::orderBy('id', 'ASC')->paginate(10);
         } else {
             $vehicles = Vehicle::where('vector', 'LIKE', "%{$validated['vector']}%")
-                ->orWhere('position', 'LIKE', "%{$validated['vector']}%")
                 ->paginate(100);
         }
 

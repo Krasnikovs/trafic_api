@@ -35,7 +35,7 @@ Route::post('/vehicle/filter', [VehicleController::class, 'vehicleFilter']);
 
 
 
-Route::apiResource('/vehicle', VehicleController::class);
+Route::apiResource('/vehicles', VehicleController::class);
 
 Route::get('/vehicle_timeframe', [VehicleController::class, 'timeframes']);
 
