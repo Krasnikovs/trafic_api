@@ -34,13 +34,13 @@ class VehicleController extends Controller
     public function vehicleFilter (Request $request)
     {
         $validated = $request->validate([
-           'name' => 'sometimes'
+           'vector' => 'sometimes'
         ]);
-        if (!isset($validate['vector'])) {
-            $vehicles = Vehicle::orderBy('id', 'ASC')->paginate(100);
+        if (!isset($validated['vector'])) {
+            $vehicles = Vehicle::orderBy('id', 'ASC')->paginate(10);
         } else {
             $vehicles = Vehicle::where('vector', 'LIKE', "%{$validated['vector']}%")
-                ->orWhere('position', 'LIKE', "%{$validated['vector']}")
+                ->orWhere('position', 'LIKE', "%{$validated['vector']}%")
                 ->paginate(100);
         }
 
