@@ -25,6 +25,9 @@ use App\Models\Vehicle;
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/users', UserController::class);
     Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/me', [AuthController::class, 'me']);
+    Route::get('/exportVehicleFilter', [VehicleController::class, 'exportVehicleFilter']);
+    Route::get('/exportAvgLifeTime', [VehicleController::class, 'exportAvgLifeTime']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -33,10 +36,16 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/vehicle/filter', [VehicleController::class, 'vehicleFilter']);
 
-
-
 Route::apiResource('/vehicles', VehicleController::class);
 
 Route::get('/vehicle_timeframe', [VehicleController::class, 'timeframes']);
 
 Route::post('/vehicle/set_vehicle', [VehicleController::class, 'input']);
+
+Route::post('/vehicle/placesBeen', [VehicleController::class, 'placesBeen']);
+
+Route::get('/vehicle/timeSpent', [VehicleController::class, 'avgLifetime']);
+
+Route::get('/pdf_exportVehicleFilter', [VehicleController::class, 'pdfExportVehicleFilter'])->name('pdfExportVehicleFilter');
+
+Route::get('/pdf_exportAvgLifeTime', [VehicleController::class, 'pdfExportAvgLifeTime'])->name('pdfExportAvgLifeTime');
